@@ -1,0 +1,17 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: AcmeBlogBundle:Welcome:index }
+
+_posts:
+    pattern: /posts
+    defaults: { _controller: AcmeBlogBundle:Blog:index }
+
+_post:
+    pattern: /post/{slug}
+    defaults: { _controller: AcmeBlogBundle:Blog:show }
+
+_comment:
+    pattern: /post/{slug}/comment
+    defaults: { _controller: AcmeBlogBundle:Blog:comment }
+    requirements:
+        _method: POST

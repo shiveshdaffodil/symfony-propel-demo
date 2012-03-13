@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" package="src.Acme.BlogBundle.Model" namespace="Acme\BlogBundle\Model" defaultIdMethod="native" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd">
+    <table name="posts" phpName="Post">
+        <column name="id" type="integer" autoIncrement="true" primaryKey="true" />
+        <column name="title" type="varchar" size="255" required="true" primaryString="true" />
+        <column name="slug" type="varchar" size="255" required="true" />
+        <column name="excerpt" type="longvarchar" required="true" lazyLoad="false" />
+        <column name="content" type="longvarchar" required="true" lazyLoad="true" />
+
+        <column name="published" type="boolean" required="true" defaultValue="false" />
+        <column name="locked" type="boolean" required="true" defaultValue="false" />
+
+        <column name="created_by" type="integer" required="true" />
+        <column name="published_by" type="integer" required="false" defaultValue="null" />
+        <column name="locked_by" type="integer" required="false" defaultValue="null" />
+
+        <behavior name="sluggable">
+            <parameter name="slug_column" value="slug" />
+            <parameter name="replace_pattern" value="/[^\\pL\\d]+/u" />
+        </behavior>
+
+        <foreign-key foreignTable="users" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="created_by" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="users" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="published_by" foreign="id" />
+        </foreign-key>
+    </table>
+
+    <table name="comments" phpName="Comment">
+        <column name="id" type="integer" autoIncrement="true" primaryKey="true" />
+        <column name="post_id" type="integer" />
+        <column name="content" type="longvarchar" required="true" lazyLoad="true" />
+
+        <column name="created_by" type="integer" required="true" />
+
+        <foreign-key foreignTable="posts" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="post_id" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="users" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="created_by" foreign="id" />
+        </foreign-key>
+    </table>
+
+    <table name="users" phpName="User">
+        <column name="id" type="integer" autoIncrement="true" primaryKey="true" />
+        <column name="username" type="varchar" primaryString="true" />
+        <column name="salt" type="varchar" required="true" />
+        <column name="password" type="varchar" required="true" />
+        <column name="roles" type="array" required="false" defaultValue="null" />
+
+        <unique>
+            <unique-column name="username" />
+        </unique>
+    </table>
+</database>

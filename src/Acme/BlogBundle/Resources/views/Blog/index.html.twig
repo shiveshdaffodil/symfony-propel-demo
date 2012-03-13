@@ -1,0 +1,16 @@
+{% extends 'AcmeBlogBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Posts{% endblock %}
+
+{% block content %}
+    <nav class="breadcrumb">
+        <li><a href="{{ path('_welcome') }}">Home</a><span class="divider">&raquo;</span></li>
+        <li class="active"><a href="{{ path('_posts') }}">Posts</a></li>
+    </nav>
+    {% for post in posts %}
+        {{ block('preview') }}
+        {% if not loop.last %}
+            <hr class="soften" />
+        {% endif %}
+    {% endfor %}
+{% endblock %}

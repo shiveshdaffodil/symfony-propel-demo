@@ -1,0 +1,13 @@
+{% extends 'AcmeBlogBundle::layout.html.twig' %}
+
+{% block title %}Propel - Blog Application{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="hero-unit">
+            <h1>Welcome, Propel user!</h1>
+            <p>This is a demo application related to the cookbook entry on <a href="http://www.propelorm.org/cookbook/symfony2/mastering-symfony2-acl-with-propel.html">Mastering Symfony2 ACL with Propel</a>.</p>
+            <a class="btn btn-primary btn-large" href="{{ path('_posts') }}">Check the Demo Blog &raquo;</a>
+        </div>
+    </div>
+{% endblock %}

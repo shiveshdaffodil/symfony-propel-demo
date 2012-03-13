@@ -1,0 +1,51 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block generic_label %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' control-label'}) %}
+    {% if required %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
+    {% endif %}
+    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{ attrvalue }}"{% endfor %}>{{ label }}</label>
+{% endspaceless %}
+{% endblock %}
+
+{% block form_row %}
+{% spaceless %}
+    <div class="control-group{{ errors|length > 0 ? ' error' : '' }}">
+        {{ form_label(form, label|default(null)) }}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' controls'}) %}
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block field_row %}
+{% spaceless %}
+    <div class="control-group{{ errors|length > 0 ? ' error' : '' }}">
+        {{ form_label(form) }}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' controls'}) %}
+        <div class="{{ attr.class }}">
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock field_row %}
+
+{% block field_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+        <ul class="error">
+            {% for error in errors %}
+            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock field_errors %}
+
+{% block textarea_widget %}
+    {% set attr = attr|merge({'rows': 10})%}
+    {{ parent() }}
+{% endblock textarea_widget %}

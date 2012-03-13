@@ -1,0 +1,74 @@
+{% block preview %}
+    <article class="preview">
+        <h1>{{ post.title }} <small>by {{ post.creator.username }}</small></h1>
+        <p>{{ post.excerpt|nl2br }}</p>
+        <a class="btn" href="{{ url('_post', { 'slug': post.slug }) }}">read more &raquo;</a>
+    </article>
+{% endblock %}
+
+{% block post %}
+    <section>
+        <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+                <a class="btn btn-mini btn-primary" href="#"><i class="icon-pencil icon-white"></i> Edit</a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-mini btn-success" href="#"><i class="icon-ok icon-white"></i> Publish</a>
+                <a class="btn btn-mini btn-warning" href="#"><i class="icon-lock icon-white"></i> Lock</a>
+                <a class="btn btn-mini btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</a>
+            </div>
+        </div>
+        <article>
+            <h1>{{ post.title }} <small>by {{ post.creator.username }}</small></h1>
+            <p>{{ post.content|nl2br }}</p>
+        </article>
+    </section>
+{% endblock %}
+
+{% block comments %}
+{% if post.comments.count %}
+    <section class="comments">
+        <h2>Comments on <small>{{ post.title }}</small></h2>
+        {% for comment in post.comments %}
+            {{ block('comment') }}
+        {% endfor %}
+    </section>
+{% endif %}
+{% endblock %}
+
+{% block comment %}
+    <section class="well">
+        <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+                <a class="btn btn-mini btn-warning" href="#"><i class="icon-edit icon-white"></i> Moderate</a>
+                <a class="btn btn-mini btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</a>
+            </div>
+        </div>
+        <article>
+            <h3><a href="#">{{ comment.user.username }}</a> said;</h3>
+            <p>{{ comment.content }}</p>
+        </article>
+    </section>
+{% endblock %}
+
+{% block comment_form %}
+    {% form_theme form 'AcmeBlogBundle:Form:bootstrap.html.twig' %}
+
+    {% if form.get('errors') %}
+        <div class="alert alert-block alert-error">
+            <h3 class="alert-heading">Oops, the form got some errors.</h3>
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <form action="{{ url('_comment', { 'slug': post.slug }) }}" method="post" novalidate>
+        <fieldset>
+            <legend>Leave a comment</legend>
+            {{ form_row(form.content) }}
+            {{ form_rest(form) }}
+        </fieldset>
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Leave Comment" />
+        </div>
+    </form>
+{% endblock %}

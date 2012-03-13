@@ -1,0 +1,24 @@
+[symfony]
+    git=git://github.com/symfony/symfony.git
+
+[twig]
+    git=git://github.com/fabpot/Twig.git
+
+[monolog]
+    git=git://github.com/Seldaek/monolog.git
+
+[MonologBundle]
+    git=git://github.com/symfony/MonologBundle.git
+    target=bundles/Symfony/Bundle/MonologBundle
+
+[phing]
+    git=git://github.com/Xosofox/phing.git
+    target=phing
+
+[propel]
+    git=git://github.com/propelorm/Propel.git
+    target=propel
+
+[PropelBundle]
+    git=git://github.com/propelorm/PropelBundle.git
+    target=bundles/Propel/PropelBundle

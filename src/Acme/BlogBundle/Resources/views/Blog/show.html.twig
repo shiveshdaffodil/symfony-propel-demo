@@ -1,0 +1,29 @@
+{% extends 'AcmeBlogBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ post.title }}{% endblock %}
+
+{% block container %}
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('_welcome') }}">Home</a><span class="divider">&raquo;</span></li>
+                <li><a href="{{ path('_posts') }}">Posts</a><span class="divider">&raquo;</span></li>
+                <li class="active"><a href="{{ url('_post', { 'slug': post.slug }) }}">{{ post.title }}</a></li>
+            </ul>
+            {{ block('post') }}
+        </div>
+    </div>
+    <div class="row" name="comments">
+        <div class="span12">
+            {{ block('comments') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            {% set form = comment_form %}
+            {{ block('comment_form') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

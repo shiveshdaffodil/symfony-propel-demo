@@ -1,0 +1,3 @@
+services:
+    acme.security.user_provider:
+        class: Acme\BlogBundle\Security\UserProvider

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    backupGlobals               = "false"
+    backupStaticAttributes      = "false"
+    colors                      = "false"
+    convertErrorsToExceptions   = "true"
+    convertNoticesToExceptions  = "true"
+    convertWarningsToExceptions = "true"
+    processIsolation            = "false"
+    stopOnFailure               = "false"
+    syntaxCheck                 = "false"
+    bootstrap                   = "./app/bootstrap.test.php" >
+
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>./src/*/*Bundle/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./src</directory>
+            <exclude>
+                <directory>./src/*/*Bundle/Resources</directory>
+                <directory>./src/*/*Bundle/Model/map</directory>
+                <directory>./src/*/*Bundle/Model/om</directory>
+                <directory>./src/*/*Bundle/Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

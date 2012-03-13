@@ -1,0 +1,18 @@
+{% extends 'AcmeBlogBundle::layout.html.twig' %}
+
+{% form_theme form 'AcmeBlogBundle:Form:bootstrap.html.twig' %}
+
+{% block content %}
+    <p class="alert alert-info">The password for any account loaded from the <code>fixtures_1329864053.yml</code> is "<strong>foobar</strong>".</p>
+    <form class="form-horizontal" action="{{ path('login_check') }}" method="post" {{ form_enctype(form) }} novalidate>
+        <fieldset>
+            <legend>Login</legend>
+            {{ form_row(form.username) }}
+            {{ form_rest(form) }}
+        </fieldset>
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Login" />
+            <a class="btn pull-right btn-info" href="#"><i class="icon-list icon-white"></i> Accounts</a>
+        </div>
+    </form>
+{% endblock %}
