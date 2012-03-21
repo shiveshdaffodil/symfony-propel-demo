@@ -1,5 +1,7 @@
 # Propel Demo Application
 
+[![Build Status](https://secure.travis-ci.org/havvg/symfony-propel-demo.png?branch=master)](http://travis-ci.org/havvg/symfony-propel-demo)
+
 This application is a demo application on several implementations of the `PropelBundle`
 or other `Propel` related tools.
 

@@ -2,8 +2,8 @@ parameters:
   database_driver:   mysql
   database_host:     localhost
   database_port:     ~
-  database_name:     propel-acl
-  database_user:     propel-acl
+  database_name:     propel-demo
+  database_user:     propel-demo
   database_password:
 
   secret:            ThisTokenIsNotSoSecretChangeIt
