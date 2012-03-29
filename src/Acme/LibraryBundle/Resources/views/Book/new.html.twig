@@ -1,0 +1,12 @@
+{% extends "AcmeLibraryBundle::layout.html.twig" %}
+
+{% block content %}
+    {{ form_errors(form) }}
+    <form action="{{ path('book_new') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        <div class="form-actions">
+            <input class="btn btn-primary" type="submit" />
+        </div>
+    </form>
+{% endblock %}

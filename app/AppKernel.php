@@ -15,6 +15,7 @@ class AppKernel extends Kernel
             new Propel\PropelBundle\PropelBundle(),
 
             new Acme\BlogBundle\AcmeBlogBundle(),
+            new Acme\LibraryBundle\AcmeLibraryBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

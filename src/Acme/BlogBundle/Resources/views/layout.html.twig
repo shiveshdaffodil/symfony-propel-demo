@@ -3,45 +3,6 @@
 {% use 'AcmeBlogBundle::blog.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/acmeblog/css/bootstrap.css') }}" />
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/acmeblog/css/blog.css') }}" />
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('bundles/acmeblog/js/jquery.js') }}"></script>
-    <script src="{{ asset('bundles/acmeblog/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('bundles/acmeblog/js/blog.js') }}"></script>
-{% endblock %}
-
-{% block body %}
-{% spaceless %}
-    <nav class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="{{ url('_welcome') }}">Propel ACL Demo</a>
-                <ul class="nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="first"><a href="{{ url('_posts') }}">Posts</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <p class="navbar-text pull-right">Logged in as <a title="Logout" href="{{ url('logout') }}">{{ app.security.token.username }}</a></p>
-                {% else %}
-                    <p class="navbar-text pull-right"><a href="{{ url('login') }}">Login</a></p>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-
-    {% block container %}
-    <div class="container">
-        <div class="row">
-            <div class="span12">{% block content %}{% endblock %}</div>
-        </div>
-    </div>
-    {% endblock %}
-{% endspaceless %}
 {% endblock %}

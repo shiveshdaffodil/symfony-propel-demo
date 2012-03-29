@@ -1,0 +1,7 @@
+book_new:
+    pattern: /book/new
+    defaults: { _controller: 'AcmeLibraryBundle:Book:new' }
+
+books:
+    pattern: /books
+    defaults: { _controller: 'AcmeLibraryBundle:Book:list' }

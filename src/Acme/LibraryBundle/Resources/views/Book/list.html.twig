@@ -1,0 +1,24 @@
+{% extends "AcmeLibraryBundle::layout.html.twig" %}
+
+{% block content %}
+    {% if books|length > 0 %}
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>ISBN</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.isbn }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="alert alert-block alert-info">There are no books stored.</p>
+    {% endif %}
+{% endblock %}
