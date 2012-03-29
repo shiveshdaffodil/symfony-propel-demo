@@ -5,27 +5,23 @@ namespace Acme\LibraryBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class BookType extends AbstractType
+class AuthorType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('title');
-        $builder->add('isbn');
-        // Author relation
-        $builder->add('author', new AuthorType(), array(
-            'data_class' => 'Acme\LibraryBundle\Model\Author',
-        ));
+        $builder->add('first_name');
+        $builder->add('last_name');
     }
 
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'Acme\LibraryBundle\Model\Book',
+            'data_class' => 'Acme\LibraryBundle\Model\Author',
         );
     }
 
     public function getName()
     {
-        return 'book';
+        return 'author';
     }
 }
